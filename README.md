@@ -27,21 +27,16 @@ This phase prioritises speed, clarity, and conversion over system complexity.
 Architecture
 Front-End:
 HTML5 for structure
-
 CSS3 for styling and layout (custom, no frameworks)
-
 Vanilla JavaScript for interaction and state control
 
 Design Approach:
 Component-like structure within a single HTML file
 Section-based rendering using class toggling
 Modal-driven detail views for service offerings
-
 There is currently no backend integration. All logic is client-side.
 
 Strategic Design Decisions
-
-No Backend (Initial Phase)
 The platform deliberately avoids backend complexity in early stages. Client interaction is routed through WhatsApp Business to maintain a high-touch, concierge-style experience while reducing infrastructure overhead.
 
 Conversion Over Automation
