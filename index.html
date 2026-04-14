@@ -101,7 +101,7 @@ nav a:hover{color:var(--gold);}
 .card{
     background:var(--dark);
     padding:35px;
-    border:1px solid rgba(212,175,55,0.3);
+    border:1px solid rgba(212,175,55,0.3,);
     cursor:pointer;
     transition:0.3s;
 }
@@ -219,6 +219,12 @@ nav a:hover{color:var(--gold);}
 
 .contact h2{color:var(--gold);}
 
+.price{
+    color:var(--gold);
+    font-weight:600;
+    margin-left:5px;
+}
+
 .contact-buttons a{
     display:inline-block;
     margin:15px;
@@ -326,7 +332,7 @@ The Bespoke Concierge — A Different Standard of Care.
 <h2>Contact Your Concierge</h2>
 <div class="contact-buttons">
 <a onclick="togglePhones()">Call Now</a>
-<a href="https://wa.me/27831234567" target="_blank">WhatsApp</a>
+<a href="https://wa.me/27645479205" target="_blank">WhatsApp</a>
 </div>
 <div class="phone-list" id="phones">
 <p>0645479205</p>
@@ -359,7 +365,7 @@ p.style.display=p.style.display==="block"?"none":"block";
 const packages={
 
 signature:{
-title:"The Signature 350",
+title:"The Signature <span class='price'>350</span>",
 desc:"A refined exterior cleanse designed to maintain a polished, executive presence.",
 features:[
 "Luxury hand wash using premium shampoo",
@@ -371,7 +377,7 @@ features:[
 },
 
 distinction:{
-title:"The Distinction 550",
+title:"The Distinction <span class='price'>550</span>",
 desc:"An elevated interior refresh delivering comfort and refinement.",
 features:[
 "Full interior vacuum",
@@ -383,7 +389,7 @@ features:[
 },
 
 elite:{
-title:"The Elite 950",
+title:"The Elite <span class='price'>950</span>",
 desc:"A complete interior and exterior detailing experience.",
 features:[
 "Full exterior hand wash",
@@ -395,7 +401,7 @@ features:[
 },
 
 royale:{
-title:"The Royale 1400",
+title:"The Royale <span class='price'>1400</span>",
 desc:"Advanced luxury restoration for enhanced presence and finish.",
 features:[
 "Foam pre-wash and hand wash",
@@ -407,7 +413,7 @@ features:[
 },
 
 blacklabel:{
-title:"The Bespoke Concierge 2200",
+title:"The Bespoke Concierge <span class='price'>2200</span>",
 desc:"A multi-stage premium detailing service for high-end vehicles.",
 features:[
 "Full luxury detailing",
@@ -419,7 +425,7 @@ features:[
 },
 
 chairman:{
-title:"The Chairman’s Detail 3000",
+title:"The Chairman’s Detail <span class='price'>3000</span>",
 desc:"The ultimate executive restoration and showroom finish.",
 features:[
 "Complete vehicle restoration",
@@ -435,7 +441,7 @@ features:[
 function openPackage(pkg){
 document.getElementById("packageModal").style.display="block";
 
-document.getElementById("modalTitle").innerText=packages[pkg].title;
+document.getElementById("modalTitle").innerHTML = packages[pkg].title;
 document.getElementById("modalDesc").innerText=packages[pkg].desc;
 
 let list="";
