@@ -38,13 +38,16 @@ nav{
     border-bottom:1px solid rgba(212,175,55,0.3);
 }
 
-.logo img{height:100px;}
+.logo img{height:160px;}
 
 nav ul{display:flex;gap:30px;list-style:none;}
 
-nav a{color:white;cursor:pointer;}
-nav a:hover{color:var(--gold);}
-
+nav a{
+    color:white;
+    cursor:pointer;
+    font-size:20px;   /* ADD THIS */
+    font-weight:500;  /* OPTIONAL (makes it cleaner) */
+}
 /* HERO */
 
 .hero{
@@ -245,6 +248,33 @@ nav a:hover{color:var(--gold);}
 .about{
     padding:100px 8%;
     max-width:900px;
+    position:relative; /* IMPORTANT */
+}
+
+.about{
+    padding:100px 8%;
+    max-width:900px;
+    position:relative;
+    margin:0 auto;   /* THIS centers the text block */
+}
+
+.about::after{
+    content:"";
+    position:absolute;
+
+    right: -650px;
+    top: 30%;
+    transform:translateY(-50%);
+
+    width: 400px;
+    height:400px;
+
+    background:url('logo_ghost.png') no-repeat center;
+    background-size:contain;
+
+    opacity:0.12; /* controls how faint it is */
+
+    pointer-events:none;
 }
 
 .about h2{color:var(--gold);}
@@ -266,7 +296,7 @@ nav a:hover{color:var(--gold);}
 
 <nav>
 <div class="logo">
-<img src="logo_ghost.png">
+<img src="logo_ghost.png"> 
 </div>
 
 <ul>
