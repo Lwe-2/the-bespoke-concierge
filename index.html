@@ -21,6 +21,7 @@ body{
     background:var(--black);
     color:white;
     font-family:'Montserrat',sans-serif;
+    overflow-x:hidden;
 }
 
 h1,h2,h3{font-family:'Playfair Display',serif;}
@@ -36,18 +37,75 @@ nav{
     justify-content:space-between;
     align-items:center;
     border-bottom:1px solid rgba(212,175,55,0.3);
+    position:relative;
+    z-index:1000;
 }
 
 .logo img{height:160px;}
 
-nav ul{display:flex;gap:30px;list-style:none;}
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
 
 nav a{
     color:white;
     cursor:pointer;
-    font-size:20px;   /* ADD THIS */
-    font-weight:500;  /* OPTIONAL (makes it cleaner) */
+    font-size:20px;
+    font-weight:500;
+    transition:0.3s;
 }
+
+nav a:hover{
+    color:var(--gold);
+}
+
+/* MOBILE MENU */
+
+.menu-toggle{
+    display:none;
+}
+
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+        font-size:26px;
+        cursor:pointer;
+        color:var(--gold);
+    }
+
+    nav ul{
+        display:none;
+        flex-direction:column;
+        background:black;
+        position:absolute;
+        top:100%;
+        right:5%;
+        width:220px;
+        padding:20px;
+        border:1px solid rgba(212,175,55,0.3);
+    }
+
+    nav ul.active{display:flex;}
+
+    nav ul li{padding:10px 0;}
+
+    .hero{height:auto;padding:80px 5%;}
+    .hero h1{font-size:32px;}
+    .hero p{font-size:16px;}
+
+    .frame{padding:30px;margin:30px 5%;}
+
+    .package-grid{
+        grid-template-columns:1fr !important;
+    }
+
+    .about{padding:60px 5%;}
+    .contact{padding:60px 5%;}
+}
+
 /* HERO */
 
 .hero{
@@ -78,7 +136,9 @@ nav a{
     color:black;
 }
 
-/* PACKAGES FRAME */
+/* PACKAGES */
+
+.packages{text-align:center;}
 
 .frame{
     padding:60px;
@@ -90,25 +150,15 @@ nav a{
     inset 0 0 20px rgba(212,175,55,0.1);
 }
 
-/* PACKAGES */
-
-.packages{text-align:center;}
+.packages h2{
+    margin-top:30px;
+}
 
 .package-grid{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:40px;
     margin-top:50px;
-}
-
-@media(max-width: 768px){
-    .frame{
-        padding:30px;
-    }
-
-    .card{
-        padding:25px;
-    }
 }
 
 .card{
@@ -118,14 +168,16 @@ nav a{
     cursor:pointer;
     transition:all 0.4s ease;
     min-height:220px;
-
+    
     display:flex;
     flex-direction:column;
     justify-content:center;
 
     position:relative;
     overflow:hidden;
+
 }
+
 .card::before{
     content:"";
     position:absolute;
@@ -147,28 +199,18 @@ nav a{
     left:100%;
 }
 
-.card h3{color:var(--gold);}
-
 .card h3{
     color:var(--gold);
     font-size:21px;
     margin-bottom:12px;
-    letter-spacing:1px;
-}
-
-.card p{
-    font-size:14px;
-    color:#bbb;
-    letter-spacing:0.6px;
 }
 
 .card p{
     font-size:14px;
     color:#ccc;
-    letter-spacing:0.5px;
 }
 
-/* MODAL (UPGRADED) */
+/* MODAL */
 
 .modal{
     display:none;
@@ -178,8 +220,7 @@ nav a{
     width:100%;
     height:100%;
     background:rgba(0,0,0,0.92);
-    z-index:9999; /* 👈 THIS is the fix */
-    animation:fadeIn 0.3s ease;
+    z-index:9999;
 }
 
 .modal-content{
@@ -188,33 +229,33 @@ nav a{
     margin:8% auto;
     padding:50px 45px;
     border:1px solid var(--gold);
-    animation:slideUp 0.3s ease;
 }
 
 .modal-content h2{
-    color:white;
     font-size:30px;
-    margin-bottom:10px;
+}
+
+.price{
+    color:var(--gold);
+    margin-left:8px;
 }
 
 .modal-content p{
+    margin:20px 0;
     color:#ccc;
-    margin-bottom:25px;
-    font-size:16px;
-    line-height:1.6;
 }
 
 /* GOLD DIVIDER */
 .modal-content::after{
     content:"";
     display:block;
-    width:60px;
-    height:2px;
+    width:20px;
+    height:4px;
     background:var(--gold);
-    margin:20px 0 30px 0;
+    margin:20px 0 30px 22px;
 }
 
-/* FEATURE LIST */
+/* LIST */
 
 #modalList{
     list-style:none;
@@ -222,22 +263,16 @@ nav a{
 }
 
 #modalList li{
-    position:relative;
-    padding-left:22px;
     margin-bottom:12px;
-    color:#eee;
-    line-height:1.6;
-    font-size:15px;
+    position:relative;
+    padding-left:20px;
 }
 
-/* DIAMOND BULLETS */
 #modalList li::before{
     content:"◆";
     position:absolute;
     left:0;
     color:var(--gold);
-    font-size:12px;
-    top:4px;
 }
 
 /* CLOSE */
@@ -245,25 +280,23 @@ nav a{
 .close{
     float:right;
     cursor:pointer;
-    font-size:22px;
-    color:#aaa;
+    transition:0.3s;
 }
 
 .close:hover{
-    color:white;
+    color:var(--gold);
 }
 
-/* ANIMATIONS */
+/* ABOUT */
 
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
+.about{
+    padding:100px 8%;
+    max-width:900px;
+    margin:0 auto;
 }
 
-@keyframes slideUp{
-    from{transform:translateY(40px); opacity:0;}
-    to{transform:translateY(0); opacity:1;}
-}
+.about h2{color:var(--gold);}
+.about p{margin:20px 0;line-height:1.8;color:#ccc;}
 
 /* CONTACT */
 
@@ -273,12 +306,6 @@ nav a{
 }
 
 .contact h2{color:var(--gold);}
-
-.price{
-    color:var(--gold);
-    font-weight:600;
-    margin-left:5px;
-}
 
 .contact-buttons a{
     display:inline-block;
@@ -295,50 +322,22 @@ nav a{
 
 .phone-list{display:none;margin-top:20px;}
 
-/* ABOUT */
-
-.about{
-    padding:100px 8%;
-    max-width:900px;
-    position:relative; /* IMPORTANT */
-}
-
-.about{
-    padding:100px 8%;
-    max-width:900px;
-    position:relative;
-    margin:0 auto;   /* THIS centers the text block */
-}
-
-
-.about h2{color:var(--gold);}
-.about p{margin:20px 0;line-height:1.8;color:#ccc;}
-
-/* FOOTER */
-
 .footer{
+    grid-column:1 / -1; /* THIS makes it span ALL tiles */
     margin-top:60px;
     padding-top:40px;
     border-top:1px solid rgba(212,175,55,0.3);
     text-align:center;
 }
-@media(max-width:768px){
 
-    .package-grid{
-        grid-template-columns:1fr;
-    }
+.footer h3{
+    color:var(--gold);
+    margin-bottom:10px;
+}
 
-    .card:hover{
-        transform:none;
-        box-shadow:none;
-        border-color:rgba(212,175,55,0.25);
-    }
-
-    .card:active{
-        transform:scale(0.98);
-        box-shadow:0 0 20px rgba(212,175,55,0.3);
-    }
-
+.footer p{
+    color:#ccc;
+    font-size:14px;
 }
 
 </style>
@@ -348,7 +347,7 @@ nav a{
 
 <nav>
 <div class="logo">
-<img src="logo_ghost.png"> 
+<img src="logo_ghost.png">
 </div>
 
 <ul>
@@ -357,6 +356,8 @@ nav a{
 <li><a onclick="showPage('about')">About</a></li>
 <li><a onclick="showPage('contact')">Contact</a></li>
 </ul>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
 </nav>
 
 <section id="home" class="active">
@@ -370,41 +371,69 @@ nav a{
 </section>
 
 <section id="packages" class="packages">
-
 <h2>Our Signature Packages</h2>
 
 <div class="frame">
 
 <div class="package-grid">
 
-<div class="card" onclick="openPackage('signature')"><h3>The Signature</h3><p>Refined Exterior Clean</p></div>
-<div class="card" onclick="openPackage('distinction')"><h3>The Distinction</h3><p>Executive Interior Refresh</p></div>
-<div class="card" onclick="openPackage('elite')"><h3>The Elite</h3><p>Full Interior & Exterior</p></div>
-<div class="card" onclick="openPackage('royale')"><h3>The Royale</h3><p>Advanced Luxury Detail</p></div>
-<div class="card" onclick="openPackage('blacklabel')"><h3>The Bespoke Concierge</h3><p>Premium Multi-Stage Detail</p></div>
-<div class="card" onclick="openPackage('chairman')"><h3>The Chairman’s Detail</h3><p>Ultimate Restoration</p></div>
+<div class="card" onclick="openPackage('signature')">
+<h3>The Signature</h3>
+<p>A refined exterior cleanse</p>
+</div>
 
+<div class="card" onclick="openPackage('distinction')">
+<h3>The Distinction</h3>
+<p>An elevated interior refresh</p>
+</div>
+
+<div class="card" onclick="openPackage('elite')">
+<h3>The Elite</h3>
+<p>Full interior & exterior detailing</p>
+</div>
+
+<div class="card" onclick="openPackage('royale')">
+<h3>The Royale</h3>
+<p>Advanced luxury restoration</p>
+</div>
+
+<div class="card" onclick="openPackage('blacklabel')">
+<h3>The Bespoke Concierge</h3>
+<p>Premium multi-stage detail</p>
+</div>
+
+<div class="card" onclick="openPackage('chairman')">
+<h3>The Chairman’s Detail</h3>
+<p>Ultimate restoration finish</p>
 </div>
 
 <div class="footer">
-<h3 style="color:#d4af37;">We Don’t Wash Cars. We Restore Presence.</h3>
-<p>The Bespoke Concierge | Mobile Executive Auto Spa</p>
-<p>schedule your appointment | Call: 064 547 9205</p>
+    <h3>We Don’t Wash Cars. We Restore Presence.</h3>
+    <p>The Bespoke Concierge | Mobile Executive Auto Spa</p>
+    <p>schedule your appointment | Call: 064 547 9205</p>
 </div>
 
 </div>
-
+</div>
 </section>
 
 <section id="about" class="about">
 <h2>About The Bespoke Concierge</h2>
+
 <p>There comes a point where convenience is no longer enough — where standards evolve, and expectations become non-negotiable.</p>
+
 <p>The Bespoke Concierge was created for individuals who operate at that level.</p>
+
 <p>We do not simply clean vehicles. We preserve presence, protect investment, and refine the way your vehicle represents you.</p>
+
 <p>We bring a discreet, precision-driven service directly to your environment — whether at your office or residence — ensuring your day continues uninterrupted while your vehicle is meticulously restored.</p>
+
 <p>Every detail is intentional. Every product is selected for performance and finish. Every touchpoint is executed with care, consistency, and quiet excellence.</p>   
+
 <p>This is not about excess. It is about standard.</p>   
+
 <p>Because when everything else in your life reflects a certain level — your vehicle should too.</p>   
+
 <p style="color:#d4af37; font-style:italic; margin-top:30px;">
 The Bespoke Concierge — A Different Standard of Care.
 </p>  
@@ -412,14 +441,17 @@ The Bespoke Concierge — A Different Standard of Care.
 
 <section id="contact" class="contact">
 <h2>Contact Your Concierge</h2>
+
 <div class="contact-buttons">
 <a onclick="togglePhones()">Call Now</a>
 <a href="https://wa.me/27645479205" target="_blank">WhatsApp</a>
 </div>
+
 <div class="phone-list" id="phones">
 <p>0645479205</p>
 <p>0694678210</p>
 </div>
+
 </section>
 
 <div id="packageModal" class="modal">
@@ -437,6 +469,9 @@ function showPage(page){
 document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
 document.getElementById(page).classList.add("active");
 window.scrollTo(0,0);
+
+/* AUTO CLOSE MOBILE MENU */
+document.querySelector("nav ul").classList.remove("active");
 }
 
 function togglePhones(){
@@ -444,86 +479,22 @@ let p=document.getElementById("phones");
 p.style.display=p.style.display==="block"?"none":"block";
 }
 
-const packages={
-
-signature:{
-title:"The Signature <span class='price'>350</span>",
-desc:"A refined exterior cleanse designed to maintain a polished, executive presence.",
-features:[
-"Luxury hand wash using premium shampoo",
-"Rim and wheel deep cleaning",
-"Tyre gloss enhancement",
-"Exterior glass polishing",
-"Streak-free microfiber drying"
-]
-},
-
-distinction:{
-title:"The Distinction <span class='price'>550</span>",
-desc:"An elevated interior refresh delivering comfort and refinement.",
-features:[
-"Full interior vacuum",
-"Dashboard and console treatment",
-"Interior surface wipe-down",
-"Window polishing",
-"Odour neutralisation"
-]
-},
-
-elite:{
-title:"The Elite <span class='price'>950</span>",
-desc:"A complete interior and exterior detailing experience.",
-features:[
-"Full exterior hand wash",
-"Interior deep clean",
-"Glass polish (inside & out)",
-"Tyre treatment",
-"Final detailing finish"
-]
-},
-
-royale:{
-title:"The Royale <span class='price'>1400</span>",
-desc:"Advanced luxury restoration for enhanced presence and finish.",
-features:[
-"Foam pre-wash and hand wash",
-"Paint surface cleansing",
-"Interior deep cleaning",
-"Leather conditioning",
-"Gloss enhancement polish"
-]
-},
-
-blacklabel:{
-title:"The Bespoke Concierge <span class='price'>2200</span>",
-desc:"A multi-stage premium detailing service for high-end vehicles.",
-features:[
-"Full luxury detailing",
-"Advanced paint treatment",
-"Interior restoration",
-"Premium tyre finish",
-"High-gloss polish"
-]
-},
-
-chairman:{
-title:"The Chairman’s Detail <span class='price'>3000</span>",
-desc:"The ultimate executive restoration and showroom finish.",
-features:[
-"Complete vehicle restoration",
-"Interior extraction cleaning",
-"Leather rejuvenation",
-"Multi-stage paint enhancement",
-"Final showroom finish"
-]
+function toggleMenu(){
+document.querySelector("nav ul").classList.toggle("active");
 }
 
+const packages={
+signature:{title:"The Signature <span class='price'>350</span>",desc:"A refined exterior cleanse designed to maintain a polished, executive presence.",features:["Luxury hand wash","Rim cleaning","Tyre gloss","Glass polish","Microfiber dry"]},
+distinction:{title:"The Distinction <span class='price'>550</span>",desc:"An elevated interior refresh delivering comfort and refinement.",features:["Interior vacuum","Dashboard clean","Surface wipe","Window polish","Odour neutralisation"]},
+elite:{title:"The Elite <span class='price'>950</span>",desc:"A complete interior and exterior detailing experience.",features:["Full wash","Interior deep clean","Glass polish","Tyre treatment","Final finish"]},
+royale:{title:"The Royale <span class='price'>1400</span>",desc:"Advanced luxury restoration for enhanced presence and finish.",features:["Foam wash","Paint cleanse","Interior deep clean","Leather care","Gloss polish"]},
+blacklabel:{title:"The Bespoke Concierge <span class='price'>2200</span>",desc:"A multi-stage premium detailing service for high-end vehicles.",features:["Luxury detailing","Paint treatment","Interior restore","Tyre finish","High-gloss polish"]},
+chairman:{title:"The Chairman’s Detail <span class='price'>3000</span>",desc:"The ultimate executive restoration and showroom finish.",features:["Full restoration","Extraction clean","Leather rejuvenation","Paint enhancement","Showroom finish"]}
 };
 
 function openPackage(pkg){
 document.getElementById("packageModal").style.display="block";
-
-document.getElementById("modalTitle").innerHTML = packages[pkg].title;
+document.getElementById("modalTitle").innerHTML=packages[pkg].title;
 document.getElementById("modalDesc").innerText=packages[pkg].desc;
 
 let list="";
